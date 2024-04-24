@@ -33,7 +33,7 @@ This project is a simple Node.js backend for managing books. It implements basic
 
 1. Clone the repo
     ```sh
-    git clone https://github.com/devanshdalmia01/book-managment-api.git
+    git clone https://github.com/devanshdalmia01/book-management-api.git
     ```
 2. Install packages
     ```sh
