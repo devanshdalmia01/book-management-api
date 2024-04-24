@@ -1,84 +1,189 @@
-# HazGuard
+# Book Management API
 
-![HazGuard Logo](https://www.hazguard.tech/Logo.png)
+![Book Management API Logo](./logo%20made%20by%20AI.webp)
 
-We at HazGuard bring together companies across various industries on one page to help them share hazards and solutions that happen in their workplaces.
-<br/>
-<br/>
-HazGuard is a web app, a one-stop solution to track all the hazards and their solutions in an industrial workplace across different companies, sectors and countries. If a hazard has occurred in your workplace and you solved it, then you can share it or find a solution by searching here.
+This project is a simple Node.js backend for managing books. It implements basic CRUD operations on book entries and supports user authentication. It's built using Express and MongoDB.
 <br/>
 
 # Table of Contents
 
-1. [Demo](#demo)
-2. [Installation](#installation)
-3. [Technology Stack](#technology-stack)
-4. [Authors](#authors)
-5. [License](#license)
+1. [Features](#features)
+2. [Running The Project](#Running-The-Project)
+3. [API Endpoints](#API-Endpoints)
+4. [Technology Stack](#technology-stack)
+5. [Authors](#authors)
+6. [License](#license)
 
-# Demo
+# Features
 
-[Live Demo](https://www.hazguard.tech/)
+-   User registration and authentication
+-   CRUD operations for books
+-   Filtering books by author and publication year
+-   Basic security and input validation
 
-Please Note:
+# Running The Project
 
-1. We recommend using this app in Google Chrome.
-2. We recommend using this app on laptop/desktop for the best possible experience as of now.
+### Prerequisites
 
-Test Credentials:
+-   Node.js
+-   npm (Node Package Manager)
+-   MongoDB
 
--   For User With No Subscription
-    -   Email: testuser1@pestoproject.com
-    -   Password: 1234567890
-
--   For User With National Subscription
-    -   Email: testuser2@pestoproject.com
-    -   Password: 1234567890
-
--   For User With International Subscription
-    -   Email: testuser3@pestoproject.com
-    -   Password: 1234567890
-
-# Installation
+### Installation
 
 1. Clone the repo
     ```sh
-    git clone https://github.com/pesto-students/hazguard-backend-team1_sumit-srivastava.git
+    git clone https://github.com/devanshdalmia01/book-managment-api.git
     ```
-2. Set environment variables
+2. Install packages
+    ```sh
+    npm i
+    ```
+3. Set environment variables
 
     ```sh
-    MONOGODBURL=
-    PORT=
-    ACCESS_TOKEN_SECRET=
-    REFRESH_TOKEN_SECRET=
-    CONFIRMATION_TOKEN_SECRET=
-    NODE__MAILER_EMAIL=
-    NODE__MAILER_PASSWORD=
-    RAZORPAY_KEY_ID=
-    RAZORPAY_SECRET=
+    PORT=3000
+    MONGO_DB_URL=
+    JWT_SECRET=
     ```
 
-3. Install NPM packages
-    ```sh
-    cd hazguard-backend-team1_sumit-srivastava && npm install
-    ```
 4. Run
     ```sh
     npm start
     ```
+    #### OR
+5. Run with nodemon
+    ```sh
+    npm run dev
+    ```
+
+# API Endpoints
+
+## User Authentication
+
+1. Register User
+
+    `POST /api/auth/register`
+    ##### Request
+    ```sh
+    {
+        username:
+        email:
+        password:
+    }
+    ```
+
+2. Login User
+
+    `POST /api/auth/login`
+    ##### Request
+    ```sh
+    {
+        email:
+        password:
+    }
+    ```
+    ##### Response
+    ```sh
+    {
+        token:
+    }
+    ```
+
+## Book Management
+
+1. Get All Books
+
+    `GET /api/books`
+    ##### Optional Query Params
+    ```sh
+    author=
+    year=
+    ```
+    ##### Response
+    ```sh
+    [
+        {
+            _id
+            title:
+            author:
+            publicationYear:
+        },
+    ]
+    ```
+
+2. Create a new book (Authentication Required, Use token from login)
+
+    `POST /api/books`
+    ##### Request
+    ```sh
+    {
+        title:
+        author:
+        publicationYear:
+    }
+    ```
+    ##### Response
+    ```sh
+    {
+        _id:
+        title:
+        author:
+        publicationYear:
+    }
+    ```
+
+3. Get book by Id
+
+    `GET /api/books/:id`
+    ##### Response
+    ```sh
+    {
+        _id:
+        title:
+        author:
+        publicationYear:
+    }
+    ```
+
+4. Update a book
+
+    `PUT /api/books/:id`
+    ##### Request
+    ```sh
+    {
+        title:
+        author:
+        publicationYear:
+    }
+    ```
+    ##### Response
+    ```sh
+    {
+        _id:
+        title:
+        author:
+        publicationYear:
+    }
+    ```
+
+5. Delete a book
+
+    `DELETE /api/books/:id`
+    ##### Response
+    ```sh
+    Book deleted!
+    ```
 
 # Technology Stack
 
-We used a tried and tested tech stack. This resulted in a fast, performant, and easily-extensible web app that should be fairly future-proof for the coming next several years. We used:
+I used a tried and tested tech stack. This resulted in a fast, performant, and easily-extensible web app that should be fairly future-proof for the coming next several years. We used:
 
--   [MongoDB](https://www.mongodb.com/)
--   [Express.js](https://expressjs.com/)
 -   [Node.js](https://nodejs.org/)
+-   [Express.js](https://expressjs.com/)
+-   [MongoDB with Mongoose](https://www.mongodb.com/)
 -   [JWT Authentication](https://jwt.io/)
--   [Razorpay](https://razorpay.com/)
--   [Prettier](https://prettier.io/)
--   [Nodemailer](https://nodemailer.com/)
+-   [bcrypt for password hashing](https://www.npmjs.com/package/bcrypt)
 
 # Authors
 
@@ -86,10 +191,6 @@ We used a tried and tested tech stack. This resulted in a fast, performant, and 
     -   [LinkedIn](https://www.linkedin.com/in/devanshdalmia1/)
     -   [GitHub](https://github.com/devanshdalmia01/)
     -   [Email](mailto:devanshdalmia1@gmail.com)
--   Dharmik Abhangi
-    -   [LinkedIn](https://www.linkedin.com/in/dharmik-abhangi/)
-    -   [GitHub](https://github.com/Dharmik3107/)
-    -   [Email](mailto:abhangidharmik@gmail.com)
 
 # License
 
