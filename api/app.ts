@@ -1,5 +1,19 @@
+import express, { Application } from "express";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import authRoutes from "../routes/authRoutes";
+import bookRoutes from "../routes/bookRoutes";
 import mongoose from "mongoose";
-import app from "./app";
+
+dotenv.config();
+
+const app: Application = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/api/auth", authRoutes);
+app.use("/api/books", bookRoutes);
 
 const connectDB = async () => {
     try {
@@ -19,3 +33,5 @@ const start = async () => {
 };
 
 start();
+
+export default app;
