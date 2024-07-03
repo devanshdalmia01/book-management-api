@@ -12,6 +12,9 @@ const app: Application = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/", (req, res) => {
+    res.send("Hello World");
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
 
