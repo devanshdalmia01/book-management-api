@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "tsc && node ./dist/server.js",
-    "dev": "nodemon --exec ts-node server.ts"
+    "dev": "nodemon --exec ts-node server.ts",
+    "vercel-build": "echo hello"
   },
   "license": "ISC",
   "dependencies": {
